@@ -177,8 +177,9 @@ Stages of git and its termology -
  -git commi9t -m "1st commit from mumbai"
  -git statusgit loggit show <commit -id>
  -git remote add origin <central git url>
- -git push -u origin master  {enter user name ans password}
- 
+ -git push -u origin master  {enter user name ans password}  Now git Changed master to main , so all master in cmd will be main or as we specify on git hub
+   means - git push -u origin main
+   
  now go to singapore machine and craete one durectory and go inside it.
  
  -git init=git remote add origin <git hub repo url>
