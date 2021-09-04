@@ -194,6 +194,8 @@ Stages of git and its termology -
  - git status
  -git log
  -git push origin master
+
+ Now we can use above or thsi cmd git push origin HEAD:main
  
  
  GIT ignore command
