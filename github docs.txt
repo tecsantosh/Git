@@ -1,0 +1,326 @@
+Lec -1
+Devops - Is a methodology
+why devops engineer required - fast deliovery,high quality, less capes and opex, reduce outage.
+
+developers > build > test > quality assurance > deploy/delivery
+
+SDLC - software development life cycle 
+
+git - maven- jenkins-chef/ansible/docker/pupet/- nagios,cloudwatch
+
+before devops - waterfall method or step by step model.
+
+lec-2 
+
+ devops - implementing automation at each and every stage.
+ 
+ 1. version control - maintai different version of the code. (GIT)
+ 2. Contineous integration - compile, validate, code review,testing,integration. (Jenkins)
+ 3. Continous delvery - deploying the build app to test server  (Maven)
+ 4. continous deplyment - deploying the test app on the production server for release.
+ 
+=> The term devops is a combination od two words ie. development and operrations
+
+Devops is a methodology that allows a singe team to manage the entire application development life cycle, thet is development,testing, deployment and operations.
+
+the objective of devops is to shorten the system's development life cycle.
+
+devops is a software development approach through which superior quality software can be developed quickly and with more relaiability.
+
+lecture linux -
+cmd - cat,tac,vi,touch,mkdir
+
+put . before file name to create hidden file or folder.
+
+copy - cp file1 file2
+move/cut-paste - mv file1 /home/
+rename - mv file1 myfile
+remove dir - rmdir,rmdir -p, rmdir -pv ,rm -rf, rm -rp, rm -r
+cmd - echo, grep , short, less ,more, head,tail 
+
+cmd ====
+useradd - to add useradd
+groupadd - to add groupadd
+gpassword -a /-M = to add userinfo group to add multiple user
+ln - hardlink - means backup (ln souce destination)
+ln -s  = softlink (ln -s file1 (source) softfile1 (destination)
+tar - to archive a folder/file (tar -cvf  dir.tar sorce directory) tar -xvf dir.tar
+gzip - to compress (gzip dir.tar) - gunzip to unzip
+wget - to downlaod thorugh link , non interective netwrok donlaoder.
+===========
+imp = permissions  -
+
+in handwritten notes
+
+
+==========================
+GIT
+===
+
+before git - cvcs - centeralized version control system.
+1. it is not locally available ,menas you always need to connected to network to perform any task.
+2. everything is centralaizsed , if server get fails , yo will lost your data. like svn tool 
+
+Git - Distributed version control system.
+
+In distributed version control system, every contributor has a local copy or clone of main repository, ie everyone maintains local repo of their won which contains all the files /souce code.
+
+difference - CVCS  and DVCS
+
+CVCS
+-----
+1. in cvcs, a clinet need to get local copy od source from server,do the chnages and commit those changes to server.
+2. CVCS system are easy to learn and setup
+3. working on Branches is difficult in CVCS. and developer often face merge conflicts
+4.CVCS system do not provide offilne access.
+5. CVCS is slower as every command needs to communicate with server
+6. If CVCS server is down , developer can't work.
+
+DVCS
+----
+1. In dvcs each developer can have a local copy of source code .
+2. working on branches is easier . deloper face less conflicts.
+3. Its works in offline as developer has local repo of code.
+4. it is faster because of local repo.
+5.  no soyrce code loss if server failes. 
+
+
+Stages of git and its termology -
+-------------------------------
+
+ 1. working directory /workspace 
+ 2. Staging Area
+ 3. Local Repo
+ 
+ Repository -It is a place where you have all your codes or kind of folder on server. It is a kind of folder related to one product. chnages are personal to that particular repo.
+ 
+ Server - it contains all repos.
+ Working directory - where you find files and do modifications. At a time you can work on particulat branches.
+ 
+ In other CVCS, developers generally makes modifications and commit there changes directly to the repository but Git uses different strategy. Git doesn't tarck each and every modified fil whenever you do commit an operation. Git looks for the files present in the staging areaonly those files available in staging is considered for commit.
+ 
+ Commit -
+ --------
+ Stores changes in repository. you will get one commit -ID. 
+ It is 40 alpha numeric character.
+ It uses SHA-1 checksum concept
+ Even you chnage one dot, commit id will get chnage.
+ It helps you to track the chnages
+ commit id is also named as SHA1 hash.
+ 
+ Commit -ID/ version _iD/ Version
+ ---------------------
+ reference to identify each chnages and to identify who changed the file.
+ 
+ Tags 
+ ----
+ Tags assign a meaningful name with a specific version in the repo. once a tag is craeted for a particular commit, even if you create a new commit , it will not be updated.
+ 
+ Snapshots
+ --------
+ Represents some data of particular time. it is always incremental ie. it store the chnages (apended data) only, not entire copy.
+ 
+ Push -
+ -----
+ Push operations copies changes from a local repo instances to a remote or central repo. This is used to store the changes permanentaly into the git repository.
+ 
+ Pull - 
+ ----
+ Pull operations copies the changes from a remote repo to a local machine . The pull operation is used for syncronization b/w two repo.
+ 
+ Branches-
+ -------
+ Product is same, so one repository but different task.
+ Each task has one branches
+ when one task completed the merge that branch.
+ useful when you want to work parallerly
+ can create one branch on the basis of another branch.
+ changes are personal to that particular branch 
+ Default branch is master
+ file created in workspace will be visible in any of the branch workspace untill yoy commit , once you commit, then that file belongs to that barticular branch
+ 
+ Advantages of GIT-
+ ------------------
+ Free and open source
+ fast abd small - as most of the operations are performed locally , therfore it is fast.
+ Security - git uses a common cryptographic has function called secure hash function (SHA1) to name and identify objects within its database.
+ No need of powerful hardware
+ Easier Branching -if we create a new branch , it will copy all the codes to the new branch
+ 
+ Types REpositories -
+ ------------------
+ Bare Repositories (central repo)
+ store and share only
+ all central repositories are Bare repo
+ 
+ Non- Bare Repo (local repo)
+ Where you can modify the files
+ all local repositories are no -bare repositories
+ 
+ 
+ Git installation on linux 
+ ->sudo sudo
+ ->yum update -y
+ ->yum install git -y
+ ->git --version
+ ->git config --global user.name "santosh"
+ ->git config --global user.email "santosh@gmail.com"
+ ->git config --list
+ 
+ Lets start ==========
+ -login into mumbai ec2instance
+ -create one directory and go inside it
+ - git init
+ - create a file myfile and add some lines
+ -git status
+ -git add .
+ -git commi9t -m "1st commit from mumbai"
+ -git statusgit loggit show <commit -id>
+ -git remote add origin <central git url>
+ -git push -u origin master  {enter user name ans password}
+ 
+ now go to singapore machine and craete one durectory and go inside it.
+ 
+ -git init=git remote add origin <git hub repo url>
+ -git pull -u origin master
+ -git log
+ -git show <commit-id>
+ now add some code in the file
+ 
+ -git status
+ -git add .
+ - git commit -m "singapore 1st commit"
+ - git status
+ -git log
+ -git push origin master
+ 
+ 
+ GIT ignore command
+ =================
+ 
+ To ignore some files while commiting
+ 
+ create one hidden file.gitignore and enter file format which you want to ignore
+ 
+ for eg. vim .gitignore
+ enter *.css
+       *.java
+	   
+- git add .gitignore
+-git commit -m "lastest update exclude css"
+-git status
+
+create some test,javanad css files and add the by running "git add"
+
+-ls
+-git status
+-git add
+-git status
+-git commit -m "my test files only"
+
+- git log --grep "ignore"
+	   
+ 
+ 
+ Git branch
+==============
+The diagram above visualizes a repository with two isolated lines of development, one for a little featue and other for running feature, by developing them is Branches,its not only possible to work on both of them in paralle but it also keeps the main master branch free from error.
+>Each task has one seperate branch
+>After done with code merge branch with amster
+>This concept is useful for parallel developments
+> you can create any no od branvhes
+> changes are personal to that particular branch
+>Default Branch is "Master"
+>Files created in workspace will be visible in anyt of the barnch workspace untill you commit . Once you commit then that files belongs to that particular Branch
+>When created new branch data of exixting branch is copied to new branch. 
+ 
+ To see list of availbale branches  -> git branch
+ To create new branch -> git branch <branch name>
+ To switch branch -> git checkout <name of the branch>
+ To get git log -> git loh --oneline
+ to delete branch -> git branch -d <branch name>
+  
+  Git merge
+  =======
+  You can't merge branches of different repos,
+  
+  we use pulling machanism to merge branches
+  
+  -> Git merge <branch name>
+  
+  to vrify - > git log
+  
+  To push to central repo github -> git push origin master
+  
+  Git conflicts
+  ============
+  wehn same files having different content in different branches , then you merge, conflict occurs.
+  conflict occurs when you merge branches 
+ 
+ 
+ Git Stashing 
+ ============
+ Suppose you are implementing a new feature for your product, your code is in progress and suffenly a customer escalation comes, because of this, you have to keep aside your new feature work for few hours.
+ you cannot your partial code and aslo cannot through away your changes. so you need some temporary storage, where you can stor your partial changes and later on commit it.
+ 
+ To stash an item (only applies to modified files not new files)
+ 
+ -> git stash  -> to stash an item
+ -> git stash list -> To see stashed items list
+ -> git stash apply stash@{0} -> to apply stashed items
+ 
+ Then you can add and commit 
+ 
+ -> git stash clear -> to clear the stash item
+ 
+ Git Reset
+ =========
+ Git reset is a powerful command that is used to undo local changes to the state of a git repo
+ To reset staging are 
+ -> git reste <filename>
+ -> git reset .
+ 
+ to reset the chnages from both staging and working area at a time 
+ -> git reset --hard
+ 
+ ----------------------------------------------
+ 
+ Git Revert 
+ ==========
+ The revert command helps you undo an existing commit .
+ It does not delete any data in the process instead rather git created a new commit with the included files reverted to their previous stat . so your version control history moves forward while the state of your work/file move backward.
+ 
+ Cmd to perform this in lab -
+ sudo du
+ cd mumbaigit
+ ls
+ git status
+ make one file via vim
+ git add.
+ git commit -m "mesaage"
+ git log --oneline
+ git revert <commit -id>
+ 
+ How to remove untracked files
+ =============================
+ git clean -n (it will show what will be deleted)
+ git clean -f (it will delete)
+ 
+ Tags
+ ===
+ Tag option allows giving meaningful name to a specific  version in the repo
+ To apply tag -> git tag -a <tagname> -m <message or commit id>
+ To see the list of tags -> git tag
+ To see particular commit content by using tag -> git show <tagname>
+ To delete a tag -> git tag -d <tag name>
+ 
+ GitHUb clone
+ ============
+ open github website
+ login and choose existing repo ,now go the linux machine and run command
+ git clone <url of git hub repo>
+ it will craet a local repo automatically in linux machine with the same name as in hithub account.
+ 
+ 
+ 
+ 
